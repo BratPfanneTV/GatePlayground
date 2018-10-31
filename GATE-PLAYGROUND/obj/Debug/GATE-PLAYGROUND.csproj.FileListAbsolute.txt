@@ -1,0 +1,7 @@
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.exe.config
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.exe
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.pdb
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csprojAssemblyReference.cache
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csproj.CoreCompileInputs.cache
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.exe
+D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.pdb
