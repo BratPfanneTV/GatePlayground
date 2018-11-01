@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -1273,6 +1274,9 @@ namespace GATE_PLAYGROUND
         }
         static void Main(string[] args)
         {
+            SetScreenColorsApp.SetColor(ConsoleColor.Magenta, Color.DarkOrange);
+            SetScreenColorsApp.SetColor(ConsoleColor.DarkYellow, Color.LightSkyBlue);
+
             if (args.Length == 1)
             {
                 Playground.file = args[0] + "\\";
@@ -2059,12 +2063,12 @@ namespace GATE_PLAYGROUND
             }
             if (side.Substring(0, 1) != "A")
             {
-                ConsoleColor isactive = ConsoleColor.DarkGreen;
-                ConsoleColor inactive = ConsoleColor.DarkRed;
+                ConsoleColor isactive = ConsoleColor.Green;
+                ConsoleColor inactive = ConsoleColor.Red;
                 if (mode == 0)
                 {
-                    isactive = ConsoleColor.DarkGreen;
-                    inactive = ConsoleColor.DarkBlue;
+                    isactive = ConsoleColor.Green;
+                    inactive = ConsoleColor.Blue;
                 }
                 int Objid = 0;
                 if (!selMode)
