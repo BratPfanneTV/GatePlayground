@@ -285,6 +285,10 @@ namespace GATE_PLAYGROUND
                 public static int NO_TEXTURE_OVERRIDE_C = 115;
                 public static int NO_TEXTURE_OVERRIDE_D = 174;
                 public static int NO_TEXTURE_OVERRIDE_E = 175;
+                public static int NO_TEXTURE_OVERRIDE_F = 371;
+                public static int NO_TEXTURE_OVERRIDE_G = 373;
+                public static int NO_TEXTURE_OVERRIDE_H = 374;
+                public static int NO_TEXTURE_OVERRIDE_I = 375;
             }
 
             public class LEVEL
@@ -325,11 +329,12 @@ namespace GATE_PLAYGROUND
                 public static int ACTIVE_CONNECTION = 356;
 
                 public static int CONTROLS = 357;
+                public static int DATACABLES = 358;
+                public static int HOW_TO_PLAY = 359;
 
                 public class MULTIPLES
                 {
-                    public static int ACTIVE_CONNECTION_A = 358;
-                    public static int ACTIVE_CONNECTION_B = 359;
+                    public static int NONE = -1;
                 }
                 public class LAYERLIST
                 {

@@ -5,3 +5,10 @@ D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csp
 D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csproj.CoreCompileInputs.cache
 D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.exe
 D:\orpcmd\projects\GATE-PLAYGROUND\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.pdb
+D:\GatePlaygroundGit\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.exe.config
+D:\GatePlaygroundGit\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.exe
+D:\GatePlaygroundGit\GATE-PLAYGROUND\bin\Debug\GATE-PLAYGROUND.pdb
+D:\GatePlaygroundGit\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csprojAssemblyReference.cache
+D:\GatePlaygroundGit\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.csproj.CoreCompileInputs.cache
+D:\GatePlaygroundGit\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.exe
+D:\GatePlaygroundGit\GATE-PLAYGROUND\obj\Debug\GATE-PLAYGROUND.pdb

@@ -20,13 +20,14 @@ namespace GATE_PLAYGROUND
         public static string nextLvl = "";
         public static List<List<List<int>>> world = new List<List<List<int>>>();
         public static List<List<List<int>>> lockObj = new List<List<List<int>>>();
+        public static int layers = 7;
         public static string[] LayerNamesTUT = new string[7] {
-            "Nothing",
-            "Nothing",
-            "Nothing",
+            "The Debug Screen",
+            "Variants",
+            "How to Play",
             "Colors + Keys",
-            "Nothing",
-            "Nothing",
+            "Datacables",
+            "Layers",
             "Nothing"
         };
         public static List<string> gates = new List<string>() {
@@ -487,8 +488,8 @@ namespace GATE_PLAYGROUND
 
             "     ;     ;  = Active       ;     ;     ,=W",
             "Controls:;Arrow Keys: Move Cursor;W/S: Switch layer;A: Open Module Selector;  Q/E: Change variant;Enter: Select/Place/Remove;Space: Send signal to button;C/Y: Rotate object;X: Enter Verification Mode,",
-            "     ;     ;  = Active       ;     ;     ,=W",
-            "     ;     ;  = Active       ;     ;     ,=W",
+            "Data Cables:;Data Cables are able to transport a numeric value and work with it.;Signal Cables are not able to do that.;Connecting Data and Signal Cables will set the numeric value to 1COMMA;Also known as a default signal.,",
+            "Every Level has an objective.;In the optimal caseCOMMA it will tell youCOMMA what that is.;When you thinkCOMMA that you may have constructed a circuit;that is capable of fullfilling this objectiveCOMMA press X to enter Verification Mode.;The Game will then check whether your Circuit works as expectedCOMMA possibly with multiple test signals.;In that modeCOMMA editing your curcuit is not possible.;When you can tell that it will no longer succeedCOMMA press X to leave verification Mode again and;become able to edit your circuit again.,",
 
             " ;  Layer 3: " + LayerNamesTUT[0] + ";" +
             "  Layer 2: " + LayerNamesTUT[1] + ";" +
@@ -550,6 +551,11 @@ namespace GATE_PLAYGROUND
             "  Layer -2: " + LayerNamesTUT[5] + ";" +
             "  Layer -3: " + LayerNamesTUT[6] + ",=W", // 370
             ",", // 371
+
+            "Variants:;Many Modules you find in the Module Selector have multiple VariantsCOMMA;providing different arrangements of Inputs/Outputs;or different execution parameters. Press Q/E to select;them.,",
+            "The Debug screen.;Press D followed by the number of an option to change various options.;Ticks Per Second: Change the speed of the game. This will most likely;not have any noticeable effect on the gameplayCOMMA;but definetely on performance. So just leave it where it is.;Load World: Load a World by its filename.;Save World To: Save the current world to the given name.,",
+            "Layers:;The Game has " + layers + " LayersCOMMA providing more space.;Switch layers using W/S and use the Modules of the Selector Group \"Layers\" to send signals from top to bottom or the other way around.,",
+            "Nothing to see here.,",
         }; // Press 'D' followed by '2' and enter 'LEVEL0' to start. Enter the next ID after every level.
 
         public static Dictionary<int, int> timingGates = new Dictionary<int, int>() {
@@ -857,7 +863,6 @@ namespace GATE_PLAYGROUND
         public static List<List<List<List<int>>>> signalHoldCopy = new List<List<List<List<int>>>>();
         public static List<List<List<List<int>>>> signalHoldAge = new List<List<List<List<int>>>>();
         public static List<List<List<List<DateTime>>>> signalHoldTimestamp = new List<List<List<List<DateTime>>>>();
-        public static int layers = 7;
         public static int height = 10;
         public static int width = 20;
         public static int Spacing = 0;
@@ -1184,6 +1189,21 @@ namespace GATE_PLAYGROUND
                     break;
                 case "TUT":
                     Playground.enabledModules = new List<int>();
+                    for (int i2 = 0; i2 < Playground.layers; i2++)
+                    {
+                        for (int i1 = 1; i1 < 20; i1++)
+                        {
+                            Playground.world[i2][i1][1] = 109;
+                            Playground.world[i2][i1][2] = 109;
+                        }
+                        for (int i1 = 5; i1 <= 10; i1++)
+                        {
+                            for (int i3 = 4; i3 <= 6; i3++)
+                            {
+                                Playground.world[i2][i1][i3] = 109;
+                            }
+                        }
+                    }
                     Playground.world[Playground.baseLayer][0][0] = 352;
                     Playground.world[Playground.baseLayer][0][1] = 353;
                     Playground.world[Playground.baseLayer][0][2] = 354;
@@ -1221,17 +1241,6 @@ namespace GATE_PLAYGROUND
                     Playground.world[Playground.baseLayer][3][3] = 110;
                     Playground.world[Playground.baseLayer][3][4] = 110;
 
-                    for (int i3 = 0; i3 < 7; i3++)
-                    {
-                        for (int i1 = 5; i1 <= 9; i1++)
-                        {
-                            for (int i2 = 4; i2 <= 6; i2++)
-                            {
-                                Playground.world[i3][i1][i2] = 110;
-                            }
-                        }
-                    }
-
                     Playground.world[0][5][4] = 360;
                     Playground.world[0][5][5] = 370;
 
@@ -1249,6 +1258,13 @@ namespace GATE_PLAYGROUND
                     Playground.world[5][5][5] = 365;
                     
                     Playground.world[6][5][5] = 364;
+
+                    Playground.world[Playground.baseLayer-1][1][1] = 358;
+                    Playground.world[Playground.baseLayer+1][1][1] = 359;
+                    Playground.world[Playground.baseLayer+2][1][1] = 372;
+                    Playground.world[Playground.baseLayer+3][1][1] = 373;
+                    Playground.world[Playground.baseLayer-2][1][1] = 374;
+                    Playground.world[Playground.baseLayer-3][1][1] = 375;
                     break;
                 default:
                     loadFromFile(preset);
