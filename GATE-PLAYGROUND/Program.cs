@@ -1276,6 +1276,8 @@ namespace GATE_PLAYGROUND
         {
             SetScreenColorsApp.SetColor(ConsoleColor.Magenta, Color.DarkOrange);
             SetScreenColorsApp.SetColor(ConsoleColor.DarkYellow, Color.LightSkyBlue);
+            SetScreenColorsApp.SetColor(ConsoleColor.Green, Color.SpringGreen);
+            SetScreenColorsApp.SetColor(ConsoleColor.DarkRed, Color.IndianRed);
 
             if (args.Length == 1)
             {
