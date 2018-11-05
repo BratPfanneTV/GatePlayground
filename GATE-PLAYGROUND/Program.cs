@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1056,6 +1057,11 @@ namespace GATE_PLAYGROUND
             "1;1,0.*=0.*~10000,PIPES;-84;-85,string1,",
             "1;2,0.*=0.*+1.*~10000,PIPES;-84;-85;LOGIC,string2,"
         };
+        public static List<string> levelDescriptions = new List<string>()
+        {
+            "Connect the input with the output in a way that results in them transmitting a signal.",
+            "Connect the input with the outputs in a way that an       incoming signal arrives at both outputs."
+        };
         public static List<List<int>> levelInputs;
         public static List<List<int>> levelOutputs;
         public static List<string> winConditions = new List<string>();
@@ -1253,27 +1259,36 @@ namespace GATE_PLAYGROUND
 
                     Playground.world[3][5][4] = 363;
                     Playground.world[3][5][5] = 367;
-                    
+
                     Playground.world[4][5][5] = 366;
-                    
+
                     Playground.world[5][5][5] = 365;
-                    
+
                     Playground.world[6][5][5] = 364;
 
-                    Playground.world[Playground.baseLayer-1][1][1] = 358;
-                    Playground.world[Playground.baseLayer+1][1][1] = 359;
-                    Playground.world[Playground.baseLayer+2][1][1] = 372;
-                    Playground.world[Playground.baseLayer+3][1][1] = 373;
-                    Playground.world[Playground.baseLayer-2][1][1] = 374;
-                    Playground.world[Playground.baseLayer-3][1][1] = 375;
+                    Playground.world[Playground.baseLayer - 1][1][1] = 358;
+                    Playground.world[Playground.baseLayer + 1][1][1] = 359;
+                    Playground.world[Playground.baseLayer + 2][1][1] = 372;
+                    Playground.world[Playground.baseLayer + 3][1][1] = 373;
+                    Playground.world[Playground.baseLayer - 2][1][1] = 374;
+                    Playground.world[Playground.baseLayer - 3][1][1] = 375;
                     break;
                 default:
                     loadFromFile(preset);
                     break;
             }
         }
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
+
+        private static void Maximize()
+        {
+            Process p = Process.GetCurrentProcess();
+            ShowWindow(p.MainWindowHandle, 3); //SW_MAXIMIZE = 3
+        }
         static void Main(string[] args)
         {
+            Maximize();
             SetScreenColorsApp.SetColor(ConsoleColor.Magenta, Color.DarkOrange);
             SetScreenColorsApp.SetColor(ConsoleColor.DarkYellow, Color.LightSkyBlue);
             SetScreenColorsApp.SetColor(ConsoleColor.Green, Color.SpringGreen);
@@ -1301,7 +1316,7 @@ namespace GATE_PLAYGROUND
                 {
                     Playground.KeyPress2 = 0;
                 }
-                if (DateTime.Now.AddMilliseconds(-1*Playground.testTimeout).CompareTo(Playground.testTimestamp) > 0 && Playground.testTimeout != -1)
+                if (DateTime.Now.AddMilliseconds(-1 * Playground.testTimeout).CompareTo(Playground.testTimestamp) > 0 && Playground.testTimeout != -1)
                 {
                     Playground.xMode = false;
                 }
@@ -1497,6 +1512,13 @@ namespace GATE_PLAYGROUND
                                             }
                                             Console.Clear();
                                         }
+                                        else
+                                        {
+                                            if (Playground.levelID != "-1")
+                                            {
+                                                levelInfo(Int32.Parse(Playground.levelID));
+                                            }
+                                        }
                                         break;
                                     case ConsoleKey.LeftArrow:
                                         Playground.selectedX--;
@@ -1665,7 +1687,7 @@ namespace GATE_PLAYGROUND
                                 { // Playground.neighbourSignals[i]
                                     if (Playground.signals[layer + Playground.neighbours[i][0]][x + Playground.neighbours[i][1]][y + Playground.neighbours[i][2]][Playground.neighbourSignals[i]] <= 2)
                                     {
-                                      Playground.signals[layer][x][y][i] = 0;
+                                        Playground.signals[layer][x][y][i] = 0;
                                     }
                                     else
                                     {
@@ -1682,10 +1704,11 @@ namespace GATE_PLAYGROUND
                             {
                                 if (!second)
                                 {
-                                 // Playground.signals[layer][x][y][i] = 0;
+                                    // Playground.signals[layer][x][y][i] = 0;
                                 }
                             }
-                        } else
+                        }
+                        else
                         {
                             if (!second)
                             {
@@ -1920,7 +1943,8 @@ namespace GATE_PLAYGROUND
                         Playground.signals[layer][x][y][Playground.sides[side.Substring(0, 1)]] = outputStrength + 2;
                     }
                 }
-            } else if(io.Length == 2)
+            }
+            else if (io.Length == 2)
             {
                 foreach (string side in io[1].Split('+'))
                 {
@@ -1963,7 +1987,7 @@ namespace GATE_PLAYGROUND
                 objid2 = layer;
                 isselected = false;
             }
-            if(objid >= 336 && objid <= 343 && Playground.xMode)
+            if (objid >= 336 && objid <= 343 && Playground.xMode)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
@@ -2583,6 +2607,7 @@ namespace GATE_PLAYGROUND
                 }
             }
             Playground.nextLvl = options[3];
+            levelInfo(Int32.Parse(Playground.levelID));
         }
         static void initTest(int conditionID)
         {
@@ -2852,6 +2877,43 @@ namespace GATE_PLAYGROUND
                     }
                 }
             }
+        }
+        static void levelInfo(int levelid)
+        {
+            Console.Clear();
+            int width = 60;
+            int height = 20;
+            Console.SetCursorPosition(10, 8);
+            Console.WriteLine("\u2554" + new string('\u2550', width) + "\u2557");
+            Console.SetCursorPosition(10, (height + 10));
+            Console.WriteLine("\u255A" + new string('\u2550', width) + "\u255C");
+            for (int i = 9; i < (height + 10); i++)
+            {
+                Console.SetCursorPosition(10, i);
+                Console.Write("\u2551" + new string(' ', width) + "\u2551");
+            }
+            Console.SetCursorPosition(12, 10);
+            Console.Write("Level " + (levelid + 1));
+            Console.SetCursorPosition(12, 12);
+            Console.Write("Description:");
+            Console.SetCursorPosition(12, 13);
+            string desc = Playground.levelDescriptions[levelid];
+            int c = 0;
+            for (int i = 0; i < desc.Length; i += (width - 2))
+            {
+                Console.SetCursorPosition(12, 13 + c);
+                Console.Write((desc + new string(' ', width)).Substring(i, width - 2).Trim());
+                c++;
+            }
+            int mc = 0;
+            Console.SetCursorPosition(12, 14 + c);
+            Console.Write("Enabled Modules:");
+            foreach (int m in Playground.enabledModules)
+            {
+                display(m, 12 + ((mc % 10) * 6), 15 + c + (int)(mc / 10), true);
+                mc++;
+            }
+            Console.ReadKey();
         }
     }
 }
